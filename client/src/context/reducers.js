@@ -1,4 +1,10 @@
-import { CLEAR_ALERT, DISPLAY_ALERT } from "./actions";
+import {
+  CLEAR_ALERT,
+  DISPLAY_ALERT,
+  REGISTER_USER_BEGIN,
+  REGISTER_USER_ERROR,
+  REGISTER_USER_SUCCESS,
+} from "./actions";
 const reducer = (state, action) => {
   if (action.type === DISPLAY_ALERT) {
     return {
@@ -9,6 +15,28 @@ const reducer = (state, action) => {
     };
   } else if (action.type === CLEAR_ALERT) {
     return { ...state, showAlert: false, alertText: "", alertType: "" };
+  } else if (action.type === REGISTER_USER_BEGIN) {
+    return { ...state, isLoading: true };
+  } else if (action.type === REGISTER_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token: action.payload.token,
+      user: action.payload.user,
+      userLocation: action.payload.userLocation,
+      jobLocation: action.payload.jobLocation,
+      showAlert: true,
+      alertType: "success",
+      alertText: "User Created! Redirecting",
+    };
+  } else if (action.type === REGISTER_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
   }
   throw new Error(`no such action: ${action.type}`);
 };
