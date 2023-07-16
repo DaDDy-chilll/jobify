@@ -5,6 +5,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
     msg: err.message || "Something went wrong, try again later",
   };
+
   if (err.name === "ValidationError") {
     defautlError.statusCode = StatusCodes.BAD_REQUEST;
     // defautlError.msg = err.message;
@@ -17,7 +18,9 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     defautlError.statusCode = StatusCodes.BAD_REQUEST;
     defautlError.msg = `${Object.keys(err.keyValue)} field has to be unique`;
   }
+
   res.status(defautlError.statusCode).json({ msg: defautlError.msg });
   // res.status(defautlError.statusCode).json({ msg: err });
 };
+
 export default errorHandlerMiddleware;

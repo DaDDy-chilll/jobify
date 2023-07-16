@@ -1,24 +1,28 @@
-import { User } from "../db/connect.js";
-//todo import User from "../models/User"; ---------For mongo
+// import { User } from "../db/connect.js";
+ import User from "../models/User.js"; 
 
 import { StatusCodes } from "http-status-codes";
+import {BadRequestError} from '../errors/index.js'
 
-class CustomAPIError extends Error {
-  constructor(message) {
-    super(message);
-    this.statusCode = StatusCodes.BAD_REQUEST;
-  }
-}
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
-    throw new CustomAPIError("please provide all values");
+    throw new BadRequestError("please provide all values");
   }
 
-  //todo const user = await User.create({name,email,password}); ---------for mongo
-  const user = await User.push({ name, email, password });
-  res.status(StatusCodes.CREATED).json({ user });
+  const userAlreadyExist = await User.findOne({email});
+
+  if(userAlreadyExist){
+    throw new BadRequestError('Email already in use')
+  }
+
+   const user = await User.create({name,email,password});
+  // const user = await User.push({ name, email, password });
+
+  const token = user.createJWT();
+  console.log(token)
+  res.status(StatusCodes.CREATED).json({ user:{email:user.email,lastName:user.lastName,location:user.location,name:user.name},token,location:user.location });
 };
 
 const login = async (req, res) => {
