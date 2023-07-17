@@ -4,6 +4,12 @@ import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_ERROR,
   REGISTER_USER_SUCCESS,
+  LOGIN_USER_BEGIN,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_ERROR,
+  SETUP_USER_BEGIN,
+  SETUP_USER_SUCCESS,
+  SETUP_USER_ERROR,
 } from "./actions";
 const reducer = (state, action) => {
   if (action.type === DISPLAY_ALERT) {
@@ -15,9 +21,53 @@ const reducer = (state, action) => {
     };
   } else if (action.type === CLEAR_ALERT) {
     return { ...state, showAlert: false, alertText: "", alertType: "" };
-  } else if (action.type === REGISTER_USER_BEGIN) {
+    // } else if (action.type === REGISTER_USER_BEGIN) {
+    //   return { ...state, isLoading: true };
+    // } else if (action.type === REGISTER_USER_SUCCESS) {
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     token: action.payload.token,
+    //     user: action.payload.user,
+    //     userLocation: action.payload.userLocation,
+    //     jobLocation: action.payload.jobLocation,
+    //     showAlert: true,
+    //     alertType: "success",
+    //     alertText: "User Created! Redirecting",
+    //   };
+    // } else if (action.type === REGISTER_USER_ERROR) {
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     showAlert: true,
+    //     alertType: "danger",
+    //     alertText: action.payload.msg,
+    //   };
+    // } else if (action.type === LOGIN_USER_BEGIN) {
+    //   return { ...state, isLoading: true };
+    // } else if (action.type === LOGIN_USER_SUCCESS) {
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     token: action.payload.token,
+    //     user: action.payload.user,
+    //     userLocation: action.payload.userLocation,
+    //     jobLocation: action.payload.jobLocation,
+    //     showAlert: true,
+    //     alertType: "success",
+    //     alertText: "Login Successful! Redirecting",
+    //   };
+    // } else if (action.type === LOGIN_USER_ERROR) {
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     showAlert: true,
+    //     alertType: "danger",
+    //     alertText: action.payload.msg,
+    //   };
+  } else if (action.type === SETUP_USER_BEGIN) {
     return { ...state, isLoading: true };
-  } else if (action.type === REGISTER_USER_SUCCESS) {
+  } else if (action.type === SETUP_USER_SUCCESS) {
     return {
       ...state,
       isLoading: false,
@@ -27,9 +77,9 @@ const reducer = (state, action) => {
       jobLocation: action.payload.jobLocation,
       showAlert: true,
       alertType: "success",
-      alertText: "User Created! Redirecting",
+      alertText: action.payload.alertText,
     };
-  } else if (action.type === REGISTER_USER_ERROR) {
+  } else if (action.type === SETUP_USER_ERROR) {
     return {
       ...state,
       isLoading: false,
