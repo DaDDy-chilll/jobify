@@ -5,7 +5,7 @@ import express from "express";
 import morgan from "morgan";
 import "express-async-errors";
 
-import connectDB from "./db/connect.js";
+// import connectDB from "./db/connect.js";
 
 //router
 import authRouter from "./routes/authRouter.js";
@@ -37,7 +37,7 @@ app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URL);
+    // await connectDB(process.env.MONGO_URL);
     app.listen(port, () => {
       console.log(`Server is running on port:${port}`);
     });
