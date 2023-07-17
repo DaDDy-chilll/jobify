@@ -2,6 +2,7 @@ import { config } from "dotenv";
 config();
 import express from "express";
 // import cors from "cors";
+import morgan from "morgan";
 import "express-async-errors";
 
 //  import connectDB from "./db/connect.js";
@@ -16,6 +17,10 @@ import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
+}
 
 app.use(express.json());
 // app.use(cors());

@@ -34,6 +34,14 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new BadRequestError("Please provide all values");
+  }
+
+  const user = User.findOne(email);
+  // const user = await User.findOne({email})
+
   res.send("login user");
 };
 

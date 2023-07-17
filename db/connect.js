@@ -73,6 +73,9 @@ const User = {
   update: (data) => {
     [...user, { data }];
   },
+  findOne: (data) => {
+    user.filter((d) => d.email === data);
+  },
 };
 
 const Auth = [];
