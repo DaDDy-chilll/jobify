@@ -4,15 +4,17 @@ import reducer from "./reducers";
 import {
   CLEAR_ALERT,
   DISPLAY_ALERT,
-  LOGIN_USER_BEGIN,
-  LOGIN_USER_ERROR,
-  LOGIN_USER_SUCCESS,
-  REGISTER_USER_BEGIN,
-  REGISTER_USER_ERROR,
-  REGISTER_USER_SUCCESS,
+  LOGOUT_USER,
+  // LOGIN_USER_BEGIN,
+  // LOGIN_USER_ERROR,
+  // LOGIN_USER_SUCCESS,
+  // REGISTER_USER_BEGIN,
+  // REGISTER_USER_ERROR,
+  // REGISTER_USER_SUCCESS,
   SETUP_USER_BEGIN,
   SETUP_USER_ERROR,
   SETUP_USER_SUCCESS,
+  TOGGLE_SIDEBAR,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -28,6 +30,7 @@ const initialState = {
   token: token,
   userLocation: userLocation || "",
   jobLocation: userLocation || "",
+  showSiber: false,
 };
 
 const AppContext = React.createContext();
@@ -51,7 +54,7 @@ const AppProvider = ({ children }) => {
     localStorage.setItem("token", token);
     localStorage.setItem("location", location);
   };
-  const removeUserToLocalStorage = ({ user, token, location }) => {
+  const removeUserToLocalStorage = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("location");
@@ -120,8 +123,27 @@ const AppProvider = ({ children }) => {
     }
     clearAlert();
   };
+
+  const toggleSideBar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR });
+  };
+
+  const logoutUser = () => {
+    dispatch({ type: LOGOUT_USER });
+    console.log("dispatch end");
+    removeUserToLocalStorage();
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, displayAlert, setUpUser }}>
+    <AppContext.Provider
+      value={{
+        ...state,
+        displayAlert,
+        setUpUser,
+        toggleSideBar,
+        logoutUser,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
