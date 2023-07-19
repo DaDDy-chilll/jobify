@@ -9,3 +9,5 @@ const links = [
   { id: 3, text: "add job", path: "add-job", icon: <FaWpforms /> },
   { id: 4, text: "profile", path: "profile", icon: <ImProfile /> },
 ];
+
+export default links;

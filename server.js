@@ -5,7 +5,8 @@ import express from "express";
 import morgan from "morgan";
 import "express-async-errors";
 
-import connectDB from "./db/connect.js";
+//todo-------
+// import connectDB from "./db/connect.js";
 
 //router
 import authRouter from "./routes/authRouter.js";
@@ -14,6 +15,7 @@ import jobsRouters from "./routes/jobsRouter.js";
 //middlewore
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+import authenticateUser from "./middleware/auth.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -30,14 +32,15 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/jobs", jobsRouters);
+app.use("/api/v1/jobs", authenticateUser, jobsRouters);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URL);
+    //todo-------
+    // await connectDB(process.env.MONGO_URL);
     app.listen(port, () => {
       console.log(`Server is running on port:${port}`);
     });
