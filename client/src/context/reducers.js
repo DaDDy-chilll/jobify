@@ -17,6 +17,9 @@ import {
   UPDATE_USER_SUCCESS,
   HANDLE_CHANGE,
   CLEAR_VALUES,
+  CREATE_JOB_BEGIN,
+  CREATE_JOB_ERROR,
+  CREATE_JOB_SUCCESS,
 } from "./actions";
 import { initialState } from "./appContext";
 
@@ -149,6 +152,24 @@ const reducer = (state, action) => {
     return {
       ...state,
       ...initialState,
+    };
+  } else if (action.type === CREATE_JOB_BEGIN) {
+    return { ...state, isLoading: true };
+  } else if (action.type === CREATE_JOB_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "success",
+      alertText: "New Job Create",
+    };
+  } else if (action.type === CREATE_JOB_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: "action.payload.msg",
     };
   }
   throw new Error(`no such action: ${action.type}`);

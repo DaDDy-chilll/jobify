@@ -1,4 +1,7 @@
-import Job from "../models/Job.js";
+//todo----------------
+// import Job from "../models/Job.js";
+import { Job } from "../db/connect.js";
+
 import { BadRequestError, UnAuthenticatedError } from "../errors/index.js";
 import { StatusCodes } from "http-status-codes";
 
@@ -8,6 +11,9 @@ const createJob = async (req, res) => {
     throw new BadRequestError("Please provide all values");
   }
   req.body.createdBy = req.user.userId;
+
+  //todo-------------------
+  // const job = await Job.create(req.body);
   const job = await Job.create(req.body);
   res.status(StatusCodes.CREATED).json({ job });
 };

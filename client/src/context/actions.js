@@ -30,4 +30,11 @@ export const UPDATE_USER_ERROR = "UPDATE_USER_ERROR";
 
 //!Handle
 export const HANDLE_CHANGE = "HANDLE_CHANGE";
+
+//!Clear
 export const CLEAR_VALUES = "CLEAR_VALUES";
+
+//!Craete job
+export const CREATE_JOB_BEGIN = "CREATE_JOB_BEGIN";
+export const CREATE_JOB_SUCCESS = "CREATE_JOB_SUCCESS";
+export const CREATE_JOB_ERROR = "CREATE_JOB_ERROR";
