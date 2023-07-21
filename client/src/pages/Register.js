@@ -74,7 +74,7 @@ const Register = () => {
           <FromRow
             type="text"
             name="name"
-            values={values.name}
+            value={values.name}
             handleChange={handleChange}
           />
         )}
@@ -83,14 +83,14 @@ const Register = () => {
         <FromRow
           type="email"
           name="email"
-          values={values.email}
+          value={values.email}
           handleChange={handleChange}
         />
         {/* password input */}
         <FromRow
           type="password"
           name="password"
-          values={values.password}
+          value={values.password}
           handleChange={handleChange}
         />
         <button type="submit" className="btn btn-block" disabled={isLoading}>

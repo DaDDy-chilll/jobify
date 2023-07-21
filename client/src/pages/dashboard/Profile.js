@@ -28,26 +28,26 @@ const Profile = () => {
           <FromRow
             type="text"
             name="name"
-            values={name}
+            value={name}
             handleChange={(e) => setName(e.target.value)}
           />
           <FromRow
             type="text"
             name="lastName"
             labelText="last name"
-            values={lastName}
+            value={lastName}
             handleChange={(e) => setLastName(e.target.value)}
           />
           <FromRow
             type="email"
             name="email"
-            values={email}
+            value={email}
             handleChange={(e) => setEmail(e.target.value)}
           />
           <FromRow
             type="text"
             name="location"
-            values={location}
+            value={location}
             handleChange={(e) => setLocation(e.target.value)}
           />
           <button className="btn btn-block" type="submit" disabled={isLoading}>

@@ -1,4 +1,4 @@
-const FromRow = ({ type, name, values, handleChange, labelText }) => {
+const FromRow = ({ type, name, value, handleChange, labelText }) => {
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">
@@ -8,7 +8,7 @@ const FromRow = ({ type, name, values, handleChange, labelText }) => {
         type={type}
         name={name}
         id={name}
-        value={values}
+        value={value}
         onChange={handleChange}
         className="form-input"
       />
