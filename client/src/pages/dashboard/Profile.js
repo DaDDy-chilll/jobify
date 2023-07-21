@@ -18,7 +18,7 @@ const Profile = () => {
     }
     updateUser({ name, email, lastName, location });
   };
-  console.log(user);
+
   return (
     <Wrapper>
       <form className="form" onSubmit={handleSubmit}>
