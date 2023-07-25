@@ -109,7 +109,7 @@ const job = [
     status: "interview",
     jobType: "remote",
     jobLocation: "japan",
-    createBy: "2",
+    createBy: 2,
   },
   {
     id: 2,
@@ -118,7 +118,7 @@ const job = [
     status: "pending",
     jobType: "full-time",
     jobLocation: "USA",
-    createBy: "3",
+    createBy: 3,
   },
   {
     id: 3,
@@ -127,7 +127,7 @@ const job = [
     status: "declined",
     jobType: "part-time",
     jobLocation: "china",
-    createBy: "1",
+    createBy: 1,
   },
   {
     id: 4,
@@ -136,7 +136,16 @@ const job = [
     status: "pending",
     jobType: "internship",
     jobLocation: "USA",
-    createBy: "4",
+    createBy: 4,
+  },
+  {
+    id: 4,
+    company: "Cisco",
+    position: "full-stack developer",
+    status: "pending",
+    jobType: "full-time",
+    jobLocation: "UK",
+    createBy: 3,
   },
 ];
 
@@ -144,6 +153,9 @@ const Job = {
   create(data) {
     job.push(data);
     return job[job.length - 1];
+  },
+  find(id) {
+    return job.filter((j) => j.createBy === id);
   },
 };
 
