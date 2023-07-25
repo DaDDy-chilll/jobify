@@ -19,8 +19,9 @@ const createJob = async (req, res) => {
   console.log(req.body);
 
   //todo-------------------
-  const job = await Job.create(req.body);
   // const job = await Job.create(req.body);
+  const job = await Job.create(req.body);
+  console.log(job);
 
   res.status(StatusCodes.CREATED).json({ job });
 };
@@ -41,12 +42,16 @@ const updateJob = async (req, res) => {
   if (!position || !company) {
     throw new BadRequestError("Please provide all values");
   }
+
+  //todo------------------
   const job = await Job.findOne({ _id: jobId });
+
   if (!job) {
     throw new NotFoundError(`No job with id:${jobId}`);
   }
 
   //!  check premissions
+  //todo------
   checkPermissions(req.user, job.createdBy);
 
   const updatedJob = await Job.findOneAndUpdate({ _id: jobId }, req.body, {
@@ -64,10 +69,12 @@ const deleteJob = async (req, res) => {
     throw new NotFoundError(`No job with id:${jobId}`);
   }
   //!  check premissions
-  console.log("user", req.user);
-  console.log("create", job.createdBy);
   checkPermissions(req.user, job.createdBy);
+
+  //todo-------------------
   await job.deleteOne();
+  // Job.deleteOne(job)
+
   res.status(StatusCodes.OK).json({ msg: "Success! Job removed" });
 };
 

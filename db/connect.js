@@ -103,7 +103,7 @@ export default connectDB;
 
 // const job = [
 //   {
-//     id: 1,
+//     _id: 1,
 //     company: "google",
 //     position: "front-end developer",
 //     status: "interview",
@@ -112,7 +112,7 @@ export default connectDB;
 //     createBy: 2,
 //   },
 //   {
-//     id: 2,
+//     _id: 2,
 //     company: "facebook",
 //     position: "Data Analysis",
 //     status: "pending",
@@ -121,7 +121,7 @@ export default connectDB;
 //     createBy: 3,
 //   },
 //   {
-//     id: 3,
+//     _id: 3,
 //     company: "tesla",
 //     position: "python developer",
 //     status: "declined",
@@ -130,7 +130,7 @@ export default connectDB;
 //     createBy: 1,
 //   },
 //   {
-//     id: 4,
+//     _id: 4,
 //     company: "nasa",
 //     position: "full-stack developer",
 //     status: "pending",
@@ -139,7 +139,7 @@ export default connectDB;
 //     createBy: 4,
 //   },
 //   {
-//     id: 4,
+//     _id: 4,
 //     company: "Cisco",
 //     position: "full-stack developer",
 //     status: "pending",
@@ -156,6 +156,23 @@ export default connectDB;
 //   },
 //   find(id) {
 //     return job.filter((j) => j.createBy === id);
+//   },
+//   findOne(id) {
+//     return job.filter((j) => j._id === id);
+//   },
+//   findOneAndUpdate(id, data, options) {
+//     const found = this.findOne(id)[0];
+//     found.company = data.company;
+//     found.position = data.position;
+//     found.status = data.status;
+//     found.jobType = data.jobType;
+//     found.jobLocation = data.jobLocation;
+//     return found;
+//   },
+//   deleteOne(job) {
+//     const found = this.findOne(job.id)[0];
+//     const foundIndx = job.indexOf(found);
+//     job.splice(foundIndx, 1);
 //   },
 // };
 
