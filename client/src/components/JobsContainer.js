@@ -11,7 +11,6 @@ const JobsContainer = () => {
   if (isLoading) {
     return <Loading center />;
   }
-  console.log(totalJobs);
   if (jobs.length === 0) {
     return (
       <Wrapper>
@@ -26,7 +25,7 @@ const JobsContainer = () => {
       </h5>
       <div className="jobs">
         {jobs.map((job) => {
-          return <Job key={job.id} {...job} />;
+          return <Job key={job._id} {...job} />;
         })}
       </div>
       {/* pagination button */}
