@@ -1,6 +1,6 @@
 //todo----------------
-import Job from "../models/Job.js";
-// import { Job } from "../db/connect.js";
+// import Job from "../models/Job.js";
+import { Job } from "../db/connect.js";
 import mongoose from "mongoose";
 import {
   BadRequestError,
@@ -20,8 +20,8 @@ const createJob = async (req, res) => {
   console.log(req.body);
 
   //todo-------------------
-  // const job = await Job.create(req.body);
   const job = await Job.create(req.body);
+  // const job = await Job.create(req.body);
   console.log(job);
 
   res.status(StatusCodes.CREATED).json({ job });
@@ -29,8 +29,8 @@ const createJob = async (req, res) => {
 
 const getAllJobs = async (req, res) => {
   //todo----------
-  const jobs = await Job.find({ createdBy: req.user.userId });
-  // const jobs = await Job.find(req.user.userId);
+  // const jobs = await Job.find({ createdBy: req.user.userId });
+  const jobs = await Job.find(req.user.userId);
 
   res
     .status(StatusCodes.OK)
@@ -73,8 +73,8 @@ const deleteJob = async (req, res) => {
   checkPermissions(req.user, job.createdBy);
 
   //todo-------------------
-  await job.deleteOne();
-  // Job.deleteOne(job)
+  // await job.deleteOne();
+  Job.deleteOne(job);
 
   res.status(StatusCodes.OK).json({ msg: "Success! Job removed" });
 };
