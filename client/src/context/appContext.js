@@ -24,7 +24,7 @@ import {
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
   GET_JOBS_BEGIN,
-  GET_JOBS_ERROR,
+  // GET_JOBS_ERROR,
   GET_JOBS_SUCCESS,
   SET_EDIT_JOB,
   DELETE_JOB_BEGIN,
@@ -256,8 +256,8 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    const { search, searchStatus, searchType, sort } = state;
-    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+    const { search, searchStatus, searchType, sort, page } = state;
+    let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
     if (search) {
       url = url + `&search=${search}`;
     }
@@ -274,8 +274,8 @@ const AppProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error.response);
-      // logoutUser();
+      // console.log(error.response);
+      logoutUser();
     }
     clearAlert();
   };
@@ -313,8 +313,8 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`);
       getJobs();
     } catch (error) {
-      console.log(error.response);
-      // logoutUser()
+      // console.log(error.response);
+      logoutUser();
     }
   };
 
@@ -330,8 +330,8 @@ const AppProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      console.log(error.response);
-      // logoutUser()
+      // console.log(error.response);
+      logoutUser();
     }
     clearAlert();
   };

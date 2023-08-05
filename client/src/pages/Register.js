@@ -20,8 +20,8 @@ const Register = () => {
     isLoading,
     showAlert,
     displayAlert,
-    registerUser,
-    loginUser,
+    // registerUser,
+    // loginUser,
     setUpUser,
   } = useAppContext();
   const toggleMember = () => {

@@ -21,7 +21,7 @@ import {
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
   GET_JOBS_BEGIN,
-  GET_JOBS_ERROR,
+  // GET_JOBS_ERROR,
   GET_JOBS_SUCCESS,
   SET_EDIT_JOB,
   DELETE_JOB_BEGIN,
@@ -149,6 +149,7 @@ const reducer = (state, action) => {
   } else if (action.type === HANDLE_CHANGE) {
     return {
       ...state,
+      page: 1,
       [action.payload.name]: action.payload.value,
     };
   } else if (action.type === CLEAR_VALUES) {
