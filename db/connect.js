@@ -6,7 +6,7 @@ const connectDB = (url) => {
 
 export default connectDB;
 
-// ! Custome DB
+// // ! Custome DB
 
 // import jwt from "jsonwebtoken";
 // const user = [
@@ -17,6 +17,14 @@ export default connectDB;
 //     password: "123456",
 //     location: "Myanmar",
 //     lastName: "chill",
+//   },
+//   {
+//     id: "6wb52s9714422c23b10a8d76",
+//     name: "test",
+//     email: "test@gmail.com",
+//     password: "test123",
+//     location: "Myanmar",
+//     lastName: "test",
 //   },
 // ];
 

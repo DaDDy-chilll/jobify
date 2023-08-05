@@ -23,7 +23,6 @@ const createJob = async (req, res) => {
   //todo-------------------
   // const job = await Job.create(req.body);
   const job = await Job.create(req.body);
-  console.log(job);
 
   res.status(StatusCodes.CREATED).json({ job });
 };
@@ -113,6 +112,8 @@ const deleteJob = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Success! Job removed" });
 };
 
+// !important
+
 const showStats = async (req, res) => {
   let stats = await Job.aggregate([
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
@@ -159,6 +160,18 @@ const showStats = async (req, res) => {
       return { date, count };
     })
     .reverse();
+
+  //todo comment out
+  // defaultStats = {
+  //   pending: 60,
+  //   interview: 20,
+  //   declined: 40,
+  // };
+  // monthlyApplications = {
+  //   date: "July 2023",
+  //   count: 57,
+  // };
+
   res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
 

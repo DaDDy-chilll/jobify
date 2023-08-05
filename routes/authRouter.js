@@ -2,6 +2,7 @@ import expres from "express";
 import reateLimiter from "express-rate-limit";
 import { register, login, updateUser } from "../controllers/authController.js";
 import authenticateUser from "../middleware/auth.js";
+import test from "../middleware/test.js";
 const router = expres.Router();
 
 const apiLimiter = reateLimiter({
@@ -13,6 +14,6 @@ const apiLimiter = reateLimiter({
 
 router.route("/register").post(apiLimiter, register);
 router.route("/login").post(apiLimiter, login);
-router.route("/updateUser").patch(authenticateUser, updateUser);
+router.route("/updateUser").patch(authenticateUser, test, updateUser);
 
 export default router;
