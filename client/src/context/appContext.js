@@ -24,10 +24,11 @@ import {
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
   GET_JOBS_BEGIN,
-  // GET_JOBS_ERROR,
+  GET_JOBS_ERROR,
   GET_JOBS_SUCCESS,
   SET_EDIT_JOB,
   DELETE_JOB_BEGIN,
+  DELETE_JOB_ERROR,
   EDIT_JOB_BEGIN,
   EDIT_JOB_ERROR,
   EDIT_JOB_SUCCESS,
@@ -277,8 +278,12 @@ const AppProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      // console.log(error.response);
-      logoutUser();
+      if (error.response.status === 401) return;
+      dispatch({
+        type: GET_JOBS_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+      // logoutUser();
     }
     clearAlert();
   };
@@ -316,9 +321,13 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`);
       getJobs();
     } catch (error) {
-      // console.log(error.response);
-      logoutUser();
+      if (error.response.status === 401) return;
+      dispatch({
+        type: DELETE_JOB_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
     }
+    clearAlert();
   };
 
   const showStats = async () => {
@@ -350,10 +359,11 @@ const AppProvider = ({ children }) => {
   const getCurrentUser = async () => {
     dispatch({ type: GET_CURRENT_USER_BEGIN });
     try {
-      const { data } = authFetch("/auth/getCurrentUser");
+      const { data } = await authFetch("/auth/getCurrentUser");
       const { user, location } = data;
       dispatch({ type: GET_CURRENT_USER_SUCCESS, payload: { user, location } });
     } catch (error) {
+      console.log(error);
       if (error.response.status === 401) return;
       logoutUser();
     }

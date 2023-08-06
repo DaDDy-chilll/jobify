@@ -18,7 +18,7 @@ const createJob = async (req, res) => {
     throw new BadRequestError("Please provide all values");
   }
   req.body.createdBy = req.user.userId;
-  console.log(req.body);
+ 
 
   //todo-------------------
   // const job = await Job.create(req.body);

@@ -19,12 +19,13 @@ const SearchContainer = () => {
   } = useAppContext();
 
   const handleSearch = (e) => {
-    if (isLoading) return;
+    // if (isLoading) return;
     handleChange({ name: e.target.name, value: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLocalSearch("");
     clearFilters();
   };
 
@@ -40,7 +41,7 @@ const SearchContainer = () => {
   };
 
   const optimizedDebounce = useMemo(() => {
-    debounce();
+    return debounce();
     // eslint-disable-next-line
   }, []);
 
@@ -53,7 +54,7 @@ const SearchContainer = () => {
             type="text"
             name="search"
             value={localSearch}
-            handleChange={optimizedDebounce()}
+            handleChange={optimizedDebounce}
           />
           {/* status */}
           <FormRowSelect

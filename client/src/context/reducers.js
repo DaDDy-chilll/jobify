@@ -21,7 +21,7 @@ import {
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
   GET_JOBS_BEGIN,
-  // GET_JOBS_ERROR,
+  GET_JOBS_ERROR,
   GET_JOBS_SUCCESS,
   SET_EDIT_JOB,
   DELETE_JOB_BEGIN,
@@ -34,6 +34,7 @@ import {
   CHANGE_PAGE,
   GET_CURRENT_USER_BEGIN,
   GET_CURRENT_USER_SUCCESS,
+  DELETE_JOB_ERROR,
 } from "./actions";
 import { initialState } from "./appContext";
 
@@ -179,7 +180,7 @@ const reducer = (state, action) => {
       isLoading: false,
       showAlert: true,
       alertType: "danger",
-      alertText: "action.payload.msg",
+      alertText: action.payload.msg,
     };
   } else if (action.type === GET_JOBS_BEGIN) {
     return { ...state, isLoading: true, showAlert: false };
@@ -190,6 +191,14 @@ const reducer = (state, action) => {
       jobs: action.payload.jobs,
       totalJobs: action.payload.totalJobs,
       numOfPages: action.payload.numOfPages,
+    };
+  } else if (action.type === GET_JOBS_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
     };
   } else if (action.type === SET_EDIT_JOB) {
     const job = state.jobs.find((job) => job._id === action.payload.id);
@@ -206,6 +215,14 @@ const reducer = (state, action) => {
     };
   } else if (action.type === DELETE_JOB_BEGIN) {
     return { ...state };
+  } else if (action.type === DELETE_JOB_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
   } else if (action.type === EDIT_JOB_BEGIN) {
     return {
       ...state,

@@ -101,7 +101,7 @@ const Register = () => {
           className="btn btn-block btn-hipster"
           onClick={() => {
             setUpUser({
-              currentUser: { email: "test@gmail.com", password: "kmd12345" },
+              currentUser: { email: "test@gmail.com", password: "test123" },
               endPoint: "login",
               alertText: "Login Successful! Redirecting",
             });
