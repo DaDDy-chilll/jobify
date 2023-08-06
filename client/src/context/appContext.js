@@ -360,6 +360,7 @@ const AppProvider = ({ children }) => {
   };
   useEffect(() => {
     getCurrentUser();
+    //eslint-disable-next-line
   }, []);
 
   return (
